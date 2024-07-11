@@ -291,6 +291,7 @@ label.error {
 .section--detail .section-container-paragraph h2 {
   font-size: 1.75rem;
   font-weight: 500;
+  line-height: normal;
 }
 
 .section--detail .section-container-paragraph figure img {
