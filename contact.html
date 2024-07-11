@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Kayoetangan Heritage</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="">
+
+    <!-- css.googlefont -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kaisei+HarunoUmi&display=swap" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        @font-face {
+            font-family: 'Heritage';
+            src: url('assets/sass/fonts/Heritage.otf');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+
+    <!-- css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link rel="stylesheet" href="assets/sass/libs/tailwind.min.css">
+    <link rel="stylesheet" href="assets/sass/main.min.css">
+
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
+</head>
+
+<body class="bg-primary-50 text-primary-900 font-primary-2 text-sm scroll-smooth overflow-y-auto" data-scroller>
+    <!-- <div class="loader fixed inset-0 flex items-center justify-center bg-primary-900 pointer-events-none z-30"><img src="assets/images/logo.png" class="w-32 md:w-44 object-contain brightness-0 invert" alt="logo" width="240" height="48"></div> -->
+
+    <!-- header -->
+    <header class="header font-primary-1 text-white fixed top-0 inset-x-0 h-24 z-50  bg-gradient-to-b from-primary-900 to-transparent">
+        <div class="header-container container max-w-screen-2xl mx-auto flex justify-between gap-4 px-6 transition-all h-full lg:px-12 xl:px-24">
+            <div class="header-container-logo flex items-center h-full flex-1 lg:min-w-44"><a href="#"><img src="assets/images/logo.png" class="w-32 object-contain" alt="logo" width="154" height="60" ></a></div>
+            <div class="header-container-nav flex items-center h-full order-last lg:order-none">
+                <button class="header-container-nav-trigger relative flex items-center gap-2 z-20 -mx-4 px-4 h-full lg:hidden" type="button" data-toggle="menu">
+                    <svg width="29" height="29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect y="5" width="29" height="2" fill="currentColor"/>
+                        <rect y="12" width="29" height="2" fill="currentColor"/>
+                        <rect y="19" width="29" height="2" fill="currentColor"/>
+                    </svg>
+                </button>
+                <div class="header-container-nav-collapse fixed z-10 inset-0 bg-primary-900 transition-transform -translate-x-full overflow-y-auto lg:static lg:bg-transparent lg:translate-x-0 lg:overflow-y-visible"  data-toggle-open="menu">
+                    <ul class="header-container-nav-collapse-menu flex flex-col justify-center whitespace-nowrap min-h-full py-20 text-xl text-center gap-6 lg:text-base lg:gap-4 xl:gap-12 lg:py-0 lg:flex-row"> 
+                        <li class="header-container-nav-collapse-menu-item active"><a href="#">Beranda</a></li>
+                        <li class="header-container-nav-collapse-menu-item"><a href="#">Profil</a></li>
+                        <li class="header-container-nav-collapse-menu-item"><a href="#">Daya Tarik Wisata</a></li>
+                        <li class="header-container-nav-collapse-menu-item"><a href="#">Kuliner & Souvenir</a></li>
+                        <li class="header-container-nav-collapse-menu-item"><a href="#">Paket Wisata</a></li>
+                        <li class="header-container-nav-collapse-menu-item"><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="header-container-language relative flex justify-end items-center flex-1 h-full">
+                <button data-dropdown="dropdown-states" type="button" class="dropdown-btn flex gap-2 items-center">
+                    <svg class="flag w-6 h-6 object-contain" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M49.6875 96.875C75.625 96.875 96.5625 75.9375 96.5625 50H2.8125C2.8125 75.9375 23.75 96.875 49.6875 96.875Z" fill="#F9F9F9"/>
+                        <path d="M49.6875 3.125C23.75 3.125 2.8125 24.0625 2.8125 50H96.5625C96.5625 24.0625 75.625 3.125 49.6875 3.125Z" fill="#FF0019"/>
+                    </svg>                     
+                    <span class="name hidden xl:block">ID</span>
+                    <svg width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.5 1L4.5 5L8.5 1" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div data-dropdown-open="dropdown-states" class="dropdown-content absolute top-20 right-0 min-w-44 bg-primary-200 text-primary-900 rounded-lg">
+                    <ul class="flex flex-col divide-y divide-primary-400">    
+                        <li data-value="ID" class="flex items-center gap-2 p-3 cursor-pointer">
+                            <svg class="flag w-6 h-6 object-contain" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M49.6875 96.875C75.625 96.875 96.5625 75.9375 96.5625 50H2.8125C2.8125 75.9375 23.75 96.875 49.6875 96.875Z" fill="#F9F9F9"/>
+                                <path d="M49.6875 3.125C23.75 3.125 2.8125 24.0625 2.8125 50H96.5625C96.5625 24.0625 75.625 3.125 49.6875 3.125Z" fill="#FF0019"/>
+                            </svg> 
+                            <span class="name">Indonesia</span>
+                        </li>
+                        <li data-value="EN" class="flex items-center gap-2 p-3 cursor-pointer">
+                            <svg class="flag w-6 h-6 object-contain" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M34.375 94.2187V72.6562L18.2812 84.5312C22.8125 88.75 28.2812 92.0312 34.375 94.2187ZM65.625 94.2187C71.7187 92.0312 77.1875 88.75 81.7187 84.5312L65.625 72.5V94.2187ZM5.78125 65.625C6.25 67.1875 6.875 68.5938 7.65625 70.1563L13.75 65.625H5.78125ZM86.25 65.625L92.3437 70.1563C92.9687 68.75 93.5937 67.1875 94.2187 65.625H86.25Z" fill="#2A5F9E"/>
+                                <path d="M36.7187 59.375H4.0625C4.53125 61.5625 5.15625 63.5938 5.78125 65.625H13.75L7.65625 70.1563C8.90625 72.8125 10.3125 75.1562 12.0312 77.5L28.125 65.625H34.375V68.75L16.0938 82.1875L18.2813 84.375L34.375 72.6563V94.2188C36.4062 95 38.4375 95.4688 40.625 95.9375V59.375H36.7187ZM95.9375 59.375H59.375V95.9375C61.5625 95.4688 63.5938 94.8438 65.625 94.2188V72.6563L81.7188 84.375C83.9063 82.3438 85.7812 80.1563 87.6562 77.8125L70.9375 65.625H81.5625L91.0938 72.6563C91.5625 71.875 92.0312 70.9375 92.3438 70.1563L86.25 65.625H94.2188C94.8438 63.5938 95.4688 61.5625 95.9375 59.375Z" fill="white"/>
+                                <path d="M12.0312 77.5C13.2813 79.2187 14.5313 80.7813 15.9375 82.3438L34.375 68.9062V65.7812H28.125L12.0312 77.5ZM71.0937 65.625L87.8125 77.8125C88.4375 77.0312 88.9062 76.25 89.5312 75.4687C89.6875 75.3125 89.6875 75.1562 89.8437 75.1562C90.3125 74.375 90.9375 73.4375 91.4062 72.6563L81.5625 65.625H71.0937Z" fill="#FF0019"/>
+                                <path d="M65.625 5.78125V27.3438L81.7187 15.4687C77.1875 11.25 71.7187 7.96875 65.625 5.78125ZM34.375 5.78125C28.2812 7.96875 22.8125 11.25 18.2812 15.4687L34.375 27.5V5.78125ZM94.2187 34.375C93.75 32.8125 93.125 31.4063 92.3437 29.8438L86.25 34.375H94.2187ZM13.75 34.375L7.65625 29.8438C7.03125 31.4063 6.40625 32.8125 5.78125 34.375H13.75Z" fill="#2A5F9E"/>
+                                <path d="M63.2813 40.625H95.7813C95.3125 38.4375 94.6875 36.4062 94.0625 34.375H86.0938L92.1875 29.8438C90.9375 27.1875 89.5313 24.8437 87.8125 22.5L71.875 34.375H65.625V31.25L83.9063 17.8125L81.7188 15.625L65.625 27.3437V5.78125C63.5938 5 61.5625 4.53125 59.375 4.0625V40.625H63.2813ZM4.0625 40.625H40.625V4.0625C38.4375 4.53125 36.4062 5.15625 34.375 5.78125V27.3437L18.2813 15.625C16.0938 17.6563 14.2188 19.8438 12.3438 22.1875L29.0625 34.375H18.4375L8.90625 27.3437C8.4375 28.125 7.96875 29.0625 7.65625 29.8438L13.75 34.375H5.78125C5.15625 36.4062 4.53125 38.4375 4.0625 40.625Z" fill="white"/>
+                                <path d="M87.9688 22.5C86.7188 20.7812 85.4688 19.2188 84.0625 17.6562L65.625 31.0937V34.2187H71.875L87.9688 22.5ZM28.9062 34.375L12.3438 22.1875C11.7188 22.9687 11.25 23.75 10.625 24.5312C10.4688 24.6875 10.4688 24.8437 10.3125 24.8437C9.84375 25.625 9.21875 26.5625 8.75 27.3437L18.2812 34.375H28.9062Z" fill="#FF0019"/>
+                                <path d="M95.9375 40.625H59.375V4.0625C56.4063 3.4375 53.2812 3.125 50 3.125C46.7188 3.125 43.5937 3.4375 40.625 4.0625V40.625H4.0625C3.4375 43.5937 3.125 46.7188 3.125 50C3.125 53.2812 3.4375 56.4063 4.0625 59.375H40.625V95.9375C43.5937 96.5625 46.7188 96.875 50 96.875C53.2812 96.875 56.4063 96.5625 59.375 95.9375V59.375H95.9375C96.5625 56.4063 96.875 53.2812 96.875 50C96.875 46.7188 96.5625 43.5937 95.9375 40.625Z" fill="#FF0019"/>
+                            </svg>
+                            <span class="name">English</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- main -->
+    <main class="main">
+        <section class="section section--title relative text-white bg-cover bg-no-repeat bg-center" style="background-image: url('assets/images/profil-bg.jpg')">
+            <div class="absolute inset-0 bg-gradient-to-t from-primary-900 via-primary-900/80 to-transparent"></div>
+            <div class="section-container container relative max-w-screen-lg mx-auto px-6 pt-24 pb-8 lg:px-12">
+                <div class="flex justify-center items-center text-center flex-col min-h-96">
+                    <h1 class="font-primary-3 text-4xl md:text-6xl lg:text-7xl pl-4 mb-12">Hubungi Kami</h1>
+                    <p class="max-w-screen-sm">Punya pertanyaan atau kritik dan saran terkait Kampoeng Heritage Kajoetangan? Kami siap membantu anda dengan senang hati :)</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section--form relative">
+            <div class="section-container container relative max-w-screen-2xl mx-auto px-6 lg:px-12 xl:px-24">
+               <form id="demoForm" method="POST" class="form max-w-screen-sm mx-auto bg-primary-50 -mt-24 p-8 sm:p-20 flex flex-col gap-8 rounded-3xl bg-cover bg-no-repeat bg-center" style="background-image: url('assets/images/contact-form-bg.png');">
+                    <div class="form-group flex flex-col gap-2">
+                        <label class="font-medium">Nama Lengkap</label>
+                        <input required name="username" type="text" class="form-control min-h-12 rounded-lg border border-current text-primary-900 p-4" placeholder="Isi nama lengkap anda">
+                    </div>
+                    <div class="form-group flex flex-col gap-2">
+                        <label class="font-medium">Alamat Email</label>
+                        <input required name="email" type="email" class="form-control min-h-12 rounded-lg border border-current text-primary-900 p-4" placeholder="Isi alamat email anda">
+                    </div>
+                    <div class="form-group flex flex-col gap-2">
+                        <label class="font-medium">No. Handphone</label>
+                        <input required name="phone" type="text"  class="form-control min-h-12 rounded-lg border border-current text-primary-900 p-4" placeholder="Isi No Handhpone / WA email">
+                    </div>
+                    <div class="form-group flex flex-col gap-2">
+                        <label class="font-medium">Pesan</label>
+                        <textarea required name="message" type="textarea" rows="5"  class="form-control rounded-lg border border-current text-primary-900 p-4" placeholder="Isi pesan yang ingin anda sampaikan"></textarea>
+                    </div>
+                    <div class="form-button flex justify-end">
+                        <button type="submit" class="btn btn--primary tracking-[.1rem] transition-all uppercase bg-primary-900 text-white rounded-full flex items-center justify-center px-8 min-h-12 gap-4 hover:bg-primary-500">
+                            Kirim <svg class="icon transition-all" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.052 15.3288L13.466 16.7428L17.71 12.4998L13.467 8.25684L12.053 9.67184L13.88 11.4998L6.34299 11.4998L6.34299 13.4998L13.88 13.4998L12.052 15.3288Z" fill="currentColor"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M19.778 20.278C24.074 15.982 24.074 9.018 19.778 4.722C15.482 0.426 8.518 0.425999 4.222 4.722C-0.0739997 9.018 -0.074 15.982 4.222 20.278C8.518 24.574 15.482 24.574 19.778 20.278ZM18.364 18.864C20.0518 17.1762 21.0001 14.887 21.0001 12.5C21.0001 10.113 20.0518 7.82384 18.364 6.136C16.6762 4.44816 14.387 3.49994 12 3.49994C9.61304 3.49994 7.32384 4.44816 5.636 6.136C3.94816 7.82384 2.99994 10.113 2.99994 12.5C2.99994 14.887 3.94816 17.1762 5.636 18.864C7.32384 20.5518 9.61304 21.5001 12 21.5001C14.387 21.5001 16.6762 20.5518 18.364 18.864Z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                    </div>
+               </form>
+            </div>
+        </section>
+
+        <section class="section section--contact relative bg-cover bg-no-repeat bg-top" style="background-image: url('assets/images/contact-bg.png')">
+            <div class="section-container container relative max-w-screen-2xl mx-auto px-6 py-24 lg:px-12 xl:px-24">
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="section-container-left lg:w-1/2">
+                        <div class="section-container-header relative flex items-center mb-8">
+                            <h1 class="font-primary-3 whitespace-nowrap text-4xl md:text-6xl lg:text-7xl pl-4"><small class="block ml-6 -mb-2 font-medium text-xs tracking-[.1rem] uppercase font-primary-2 lg:ml-12 lg:text-xl">Lokasi</small>Kayoetangan <span class="block mt-4 -ml-4 border-b border-current w-1/3"></span></h1>
+                            <span class="absolute font-primary-3 text-primary-900/5 text-[10rem]">Heritage</span>
+                        </div>
+                        <div class="section-container-description">
+                            <p class="mb-4">Kampoeng Heritage Kajoetangan berada di pusat Kota Malang, letaknya tidak jauh dari Balaikota dan alun alun Kota Malang. Kawasan yang masuk dalam Kelurahan Kauman, Kecamatan Klojen ini merupakan kampung tua di Kota Malang, kampung ini sudah ada sejak abad ke-13.</p>
+                            <a href="contact.html" class="link uppercase flex items-center gap-2">Selengkapnya 
+                                <svg class="icon transition-all" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.052 15.3288L13.466 16.7428L17.71 12.4998L13.467 8.25684L12.053 9.67184L13.88 11.4998L6.34299 11.4998L6.34299 13.4998L13.88 13.4998L12.052 15.3288Z" fill="currentColor"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M19.778 20.278C24.074 15.982 24.074 9.018 19.778 4.722C15.482 0.426 8.518 0.425999 4.222 4.722C-0.0739997 9.018 -0.074 15.982 4.222 20.278C8.518 24.574 15.482 24.574 19.778 20.278ZM18.364 18.864C20.0518 17.1762 21.0001 14.887 21.0001 12.5C21.0001 10.113 20.0518 7.82384 18.364 6.136C16.6762 4.44816 14.387 3.49994 12 3.49994C9.61304 3.49994 7.32384 4.44816 5.636 6.136C3.94816 7.82384 2.99994 10.113 2.99994 12.5C2.99994 14.887 3.94816 17.1762 5.636 18.864C7.32384 20.5518 9.61304 21.5001 12 21.5001C14.387 21.5001 16.6762 20.5518 18.364 18.864Z" fill="currentColor"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="section-container-right lg:w-1/2"><div id="map"></div></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- footer -->
+    <footer class="footer bg-black text-gray-400">
+        <div class="footer-container container max-w-screen-2xl mx-auto px-6 lg:px-12 xl:px-24">
+            <div class="footer-container-grid flex flex-col justify-between -m-6 py-16 lg:flex-row ">
+                <div class="footer-container-grid-item p-6 shrink-0">
+                    <div class="footer-container-grid-item-logo flex items-center gap-8 mb-8">
+                        <a href="#"><img src="assets/images/logo.png" class="object-contain" alt="logo" width="154" height="60" ></a>
+                        <a href="https://www.instagram.com/kampoengkajoetangan/"><img src="assets/images/logo-heritage.png" class="object-contain" alt="image" width="40" height="60"></a>
+                    </div>
+                    <p>Datangi Kampoeng Heritage Kajoetangan<br>
+                        Lompati Waktu ke Zaman Kolonial Belanda</p>
+                </div>
+                <div class="footer-container-grid-item p-6">
+                    <span class="text-white mb-4 block text-base font-semibold">Lokasi</span>
+                    <nav class="flex flex-wrap -m-3">
+                        <li class="flex items-center gap-4 p-3">
+                            <svg class="w-5 h-5" width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 -0.000173258C8.72343 -0.0600462 7.44842 0.147284 6.25658 0.608546C5.06475 1.06981 3.98235 1.77484 3.07868 2.67851C2.17502 3.58217 1.46999 4.66457 1.00872 5.8564C0.547461 7.04824 0.340131 8.32325 0.400004 9.59983C0.400004 12.6238 2.8 15.5998 4 16.7998C5.2 17.9998 10 23.9998 10 23.9998C10 23.9998 14.8 17.9998 16 16.7998C17.2 15.5998 19.6 12.6238 19.6 9.59983C19.6599 8.32325 19.4525 7.04824 18.9913 5.8564C18.53 4.66457 17.825 3.58217 16.9213 2.67851C16.0177 1.77484 14.9353 1.06981 13.7434 0.608546C12.5516 0.147284 11.2766 -0.0600462 10 -0.000173258ZM10 13.4998C9.22866 13.4998 8.47463 13.2711 7.83328 12.8426C7.19193 12.414 6.69206 11.8049 6.39687 11.0923C6.10169 10.3797 6.02446 9.5955 6.17494 8.83897C6.32542 8.08245 6.69686 7.38754 7.24229 6.84211C7.78771 6.29669 8.48263 5.92525 9.23915 5.77476C9.99568 5.62428 10.7798 5.70151 11.4925 5.9967C12.2051 6.29188 12.8142 6.79175 13.2427 7.4331C13.6713 8.07445 13.9 8.82848 13.9 9.59983C13.9 10.112 13.7991 10.6191 13.6031 11.0923C13.4071 11.5655 13.1199 11.9954 12.7577 12.3575C12.3956 12.7197 11.9656 13.007 11.4925 13.203C11.0193 13.399 10.5122 13.4998 10 13.4998Z" fill="#CCC1A9"/>
+                            </svg>Jl. Basuki Rahmad Gang 6
+                        </li>
+                        <li class="flex items-center gap-4 p-3">
+                            <svg class="w-5 h-5" width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 -0.000173258C8.72343 -0.0600462 7.44842 0.147284 6.25658 0.608546C5.06475 1.06981 3.98235 1.77484 3.07868 2.67851C2.17502 3.58217 1.46999 4.66457 1.00872 5.8564C0.547461 7.04824 0.340131 8.32325 0.400004 9.59983C0.400004 12.6238 2.8 15.5998 4 16.7998C5.2 17.9998 10 23.9998 10 23.9998C10 23.9998 14.8 17.9998 16 16.7998C17.2 15.5998 19.6 12.6238 19.6 9.59983C19.6599 8.32325 19.4525 7.04824 18.9913 5.8564C18.53 4.66457 17.825 3.58217 16.9213 2.67851C16.0177 1.77484 14.9353 1.06981 13.7434 0.608546C12.5516 0.147284 11.2766 -0.0600462 10 -0.000173258ZM10 13.4998C9.22866 13.4998 8.47463 13.2711 7.83328 12.8426C7.19193 12.414 6.69206 11.8049 6.39687 11.0923C6.10169 10.3797 6.02446 9.5955 6.17494 8.83897C6.32542 8.08245 6.69686 7.38754 7.24229 6.84211C7.78771 6.29669 8.48263 5.92525 9.23915 5.77476C9.99568 5.62428 10.7798 5.70151 11.4925 5.9967C12.2051 6.29188 12.8142 6.79175 13.2427 7.4331C13.6713 8.07445 13.9 8.82848 13.9 9.59983C13.9 10.112 13.7991 10.6191 13.6031 11.0923C13.4071 11.5655 13.1199 11.9954 12.7577 12.3575C12.3956 12.7197 11.9656 13.007 11.4925 13.203C11.0193 13.399 10.5122 13.4998 10 13.4998Z" fill="#CCC1A9"/>
+                            </svg>Jl. Basuki Rahmad Gang 4
+                        </li>
+                        <li class="flex items-center gap-4 p-3">
+                            <svg class="w-5 h-5" width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M10 -0.000173258C8.72343 -0.0600462 7.44842 0.147284 6.25658 0.608546C5.06475 1.06981 3.98235 1.77484 3.07868 2.67851C2.17502 3.58217 1.46999 4.66457 1.00872 5.8564C0.547461 7.04824 0.340131 8.32325 0.400004 9.59983C0.400004 12.6238 2.8 15.5998 4 16.7998C5.2 17.9998 10 23.9998 10 23.9998C10 23.9998 14.8 17.9998 16 16.7998C17.2 15.5998 19.6 12.6238 19.6 9.59983C19.6599 8.32325 19.4525 7.04824 18.9913 5.8564C18.53 4.66457 17.825 3.58217 16.9213 2.67851C16.0177 1.77484 14.9353 1.06981 13.7434 0.608546C12.5516 0.147284 11.2766 -0.0600462 10 -0.000173258ZM10 13.4998C9.22866 13.4998 8.47463 13.2711 7.83328 12.8426C7.19193 12.414 6.69206 11.8049 6.39687 11.0923C6.10169 10.3797 6.02446 9.5955 6.17494 8.83897C6.32542 8.08245 6.69686 7.38754 7.24229 6.84211C7.78771 6.29669 8.48263 5.92525 9.23915 5.77476C9.99568 5.62428 10.7798 5.70151 11.4925 5.9967C12.2051 6.29188 12.8142 6.79175 13.2427 7.4331C13.6713 8.07445 13.9 8.82848 13.9 9.59983C13.9 10.112 13.7991 10.6191 13.6031 11.0923C13.4071 11.5655 13.1199 11.9954 12.7577 12.3575C12.3956 12.7197 11.9656 13.007 11.4925 13.203C11.0193 13.399 10.5122 13.4998 10 13.4998Z" fill="#CCC1A9"/>
+                            </svg>Jl. A. R Hakim 2
+                        </li>
+                    </nav>
+                </div>
+                <div class="footer-container-grid-item p-6">
+                    <span class="block text-white mb-4 text-base font-semibold">Kontak</span>
+                    <nav class="flex flex-wrap -m-3">
+                        <a href="#" class="flex items-center gap-4 lg:w-1/2 p-3">
+                            <svg class="w-5 h-5" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.8 0H14.2C17.4 0 20 2.6 20 5.8V14.2C20 15.7383 19.3889 17.2135 18.3012 18.3012C17.2135 19.3889 15.7383 20 14.2 20H5.8C2.6 20 0 17.4 0 14.2V5.8C0 4.26174 0.61107 2.78649 1.69878 1.69878C2.78649 0.61107 4.26174 0 5.8 0ZM5.6 2C4.64522 2 3.72955 2.37928 3.05442 3.05442C2.37928 3.72955 2 4.64522 2 5.6V14.4C2 16.39 3.61 18 5.6 18H14.4C15.3548 18 16.2705 17.6207 16.9456 16.9456C17.6207 16.2705 18 15.3548 18 14.4V5.6C18 3.61 16.39 2 14.4 2H5.6ZM15.25 3.5C15.5815 3.5 15.8995 3.6317 16.1339 3.86612C16.3683 4.10054 16.5 4.41848 16.5 4.75C16.5 5.08152 16.3683 5.39946 16.1339 5.63388C15.8995 5.8683 15.5815 6 15.25 6C14.9185 6 14.6005 5.8683 14.3661 5.63388C14.1317 5.39946 14 5.08152 14 4.75C14 4.41848 14.1317 4.10054 14.3661 3.86612C14.6005 3.6317 14.9185 3.5 15.25 3.5ZM10 5C11.3261 5 12.5979 5.52678 13.5355 6.46447C14.4732 7.40215 15 8.67392 15 10C15 11.3261 14.4732 12.5979 13.5355 13.5355C12.5979 14.4732 11.3261 15 10 15C8.67392 15 7.40215 14.4732 6.46447 13.5355C5.52678 12.5979 5 11.3261 5 10C5 8.67392 5.52678 7.40215 6.46447 6.46447C7.40215 5.52678 8.67392 5 10 5ZM10 7C9.20435 7 8.44129 7.31607 7.87868 7.87868C7.31607 8.44129 7 9.20435 7 10C7 10.7956 7.31607 11.5587 7.87868 12.1213C8.44129 12.6839 9.20435 13 10 13C10.7956 13 11.5587 12.6839 12.1213 12.1213C12.6839 11.5587 13 10.7956 13 10C13 9.20435 12.6839 8.44129 12.1213 7.87868C11.5587 7.31607 10.7956 7 10 7Z" fill="#E9DECC"/>
+                            </svg>kampoengkajoetangan
+                        </a>
+                        <a href="#" class="flex items-center gap-4 lg:w-1/2 p-3">
+                            <svg class="w-5 h-5" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17.05 2.91006C16.1332 1.98399 15.0412 1.24973 13.8376 0.750111C12.6341 0.250494 11.3431 -0.00448012 10.04 5.95696e-05C4.57999 5.95696e-05 0.129988 4.45006 0.129988 9.91006C0.129988 11.6601 0.589988 13.3601 1.44999 14.8601L0.0499878 20.0001L5.29999 18.6201C6.74999 19.4101 8.37999 19.8301 10.04 19.8301C15.5 19.8301 19.95 15.3801 19.95 9.92006C19.95 7.27006 18.92 4.78006 17.05 2.91006ZM10.04 18.1501C8.55999 18.1501 7.10999 17.7501 5.83999 17.0001L5.53999 16.8201L2.41999 17.6401L3.24999 14.6001L3.04999 14.2901C2.22773 12.977 1.79113 11.4593 1.78999 9.91006C1.78999 5.37006 5.48999 1.67006 10.03 1.67006C12.23 1.67006 14.3 2.53006 15.85 4.09006C16.6175 4.85402 17.2257 5.76272 17.6394 6.76348C18.0531 7.76425 18.264 8.83717 18.26 9.92006C18.28 14.4601 14.58 18.1501 10.04 18.1501ZM14.56 11.9901C14.31 11.8701 13.09 11.2701 12.87 11.1801C12.64 11.1001 12.48 11.0601 12.31 11.3001C12.14 11.5501 11.67 12.1101 11.53 12.2701C11.39 12.4401 11.24 12.4601 10.99 12.3301C10.74 12.2101 9.93999 11.9401 8.99999 11.1001C8.25999 10.4401 7.76999 9.63006 7.61999 9.38006C7.47999 9.13006 7.59999 9.00006 7.72999 8.87006C7.83999 8.76006 7.97999 8.58006 8.09999 8.44006C8.21999 8.30006 8.26999 8.19006 8.34999 8.03006C8.42999 7.86006 8.38999 7.72006 8.32999 7.60006C8.26999 7.48006 7.76999 6.26006 7.56999 5.76006C7.36999 5.28006 7.15999 5.34006 7.00999 5.33006H6.52999C6.35999 5.33006 6.09999 5.39006 5.86999 5.64006C5.64999 5.89006 5.00999 6.49006 5.00999 7.71006C5.00999 8.93006 5.89999 10.1101 6.01999 10.2701C6.13999 10.4401 7.76999 12.9401 10.25 14.0101C10.84 14.2701 11.3 14.4201 11.66 14.5301C12.25 14.7201 12.79 14.6901 13.22 14.6301C13.7 14.5601 14.69 14.0301 14.89 13.4501C15.1 12.8701 15.1 12.3801 15.03 12.2701C14.96 12.1601 14.81 12.1101 14.56 11.9901Z" fill="#E9DECC"/>
+                            </svg>+62 823 3186 2720
+                        </a>
+                        <a href="#" class="flex items-center gap-4 lg:w-1/2 p-3">
+                            <svg class="w-5 h-5" width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 10L13.19 7L8 4V10ZM19.56 2.17C19.69 2.64 19.78 3.27 19.84 4.07C19.91 4.87 19.94 5.56 19.94 6.16L20 7C20 9.19 19.84 10.8 19.56 11.83C19.31 12.73 18.73 13.31 17.83 13.56C17.36 13.69 16.5 13.78 15.18 13.84C13.88 13.91 12.69 13.94 11.59 13.94L10 14C5.81 14 3.2 13.84 2.17 13.56C1.27 13.31 0.69 12.73 0.44 11.83C0.31 11.36 0.22 10.73 0.16 9.93C0.0900001 9.13 0.0599999 8.44 0.0599999 7.84L0 7C0 4.81 0.16 3.2 0.44 2.17C0.69 1.27 1.27 0.69 2.17 0.44C2.64 0.31 3.5 0.22 4.82 0.16C6.12 0.0899998 7.31 0.0599999 8.41 0.0599999L10 0C14.19 0 16.8 0.16 17.83 0.44C18.73 0.69 19.31 1.27 19.56 2.17Z" fill="#E9DECC"/>
+                            </svg>Kampoeng Kajoetangan
+                        </a>
+                        <a href="#" class="flex items-center gap-4 lg:w-1/2 p-3">
+                            <svg class="w-5 h-5" width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12.6 2.82C11.9164 2.03962 11.5397 1.03743 11.54 0H8.45V12.4C8.42617 13.071 8.14287 13.7066 7.65977 14.1729C7.17666 14.6393 6.53145 14.8999 5.86 14.9C4.44 14.9 3.26 13.74 3.26 12.3C3.26 10.58 4.92 9.29 6.63 9.82V6.66C3.18 6.2 0.160004 8.88 0.160004 12.3C0.160004 15.63 2.92 18 5.85 18C8.99 18 11.54 15.45 11.54 12.3V6.01C12.793 6.90985 14.2974 7.39265 15.84 7.39V4.3C15.84 4.3 13.96 4.39 12.6 2.82Z" fill="#E9DECC"/>
+                            </svg>kampoeng kajoetangan
+                        </a>
+                        <a href="#" class="flex items-center gap-4 lg:w-1/2 p-3">
+                            <svg class="w-5 h-5" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 10C20 4.48 15.52 0 10 0C4.48 0 0 4.48 0 10C0 14.84 3.44 18.87 8 19.8V13H6V10H8V7.5C8 5.57 9.57 4 11.5 4H14V7H12C11.45 7 11 7.45 11 8V10H14V13H11V19.95C16.05 19.45 20 15.19 20 10Z" fill="#E9DECC"/>
+                            </svg>Kampoeng Kajoetangan
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            <p class="footer-copyright py-6 text-xs text-center border-t border-white/20">© Copyright 2022 - Kampoeng Heritage Kajoetangan</p>
+        </div>
+    </footer>
+
+    <!--js-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="assets/js/main.js" defer></script>
+
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+    <script>
+        $("#demoForm").validate({
+            rules: {
+                phone: {
+                    required: true,
+                    number: true
+                }
+            }
+        });
+    </script>
+</body>
+</html>
