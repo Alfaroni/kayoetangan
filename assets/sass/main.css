@@ -181,8 +181,8 @@ label.error {
 
 .section .swiper-button {
   margin-top: 0;
-  width: auto;
-  height: auto;
+  width: 2rem;
+  height: 1rem;
   color: inherit;
 }
 
