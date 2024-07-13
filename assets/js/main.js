@@ -244,3 +244,7 @@ L.tileLayer.grayscale('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 L.marker([-7.9802627,112.6291692], {icon: LeafIcon}).addTo(map).bindPopup(customPopup,customOptions).openPopup();
 
+localStorage.setItem('loader', 'true')
+if(localStorage.getItem('loader') === 'true'){
+    document.querySelector(".loader").style.display = "none";
+}
